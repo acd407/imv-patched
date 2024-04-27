@@ -1,0 +1,33 @@
+diff --git a/src/imv.c b/src/imv.c
+index ce0c43a..80785e7 100644
+--- a/src/imv.c
++++ b/src/imv.c
+@@ -530,8 +530,8 @@ struct imv *imv_create(void)
+   imv->need_rescale = true;
+   imv->scaling_mode = SCALING_FULL;
+   imv->loop_input = true;
+-  imv->overlay.font.name = strdup("Monospace");
+-  imv->overlay.font.size = 24;
++  imv->overlay.font.name = strdup("SourceCodeVF");
++  imv->overlay.font.size = 18;
+   imv->binds = imv_binds_create();
+   imv->navigator = imv_navigator_create();
+   imv->backends = list_create();
+@@ -1444,7 +1444,7 @@ static void render_window(struct imv *imv)
+   /* draw command entry bar if needed */
+   if (imv_console_prompt(imv->console)) {
+     const int bottom_offset = 5;
+-    const int height = imv->overlay.font.size * 1.2;
++    const int height = imv->overlay.font.size * 1.8;
+     imv_canvas_color(imv->canvas, 0, 0, 0, 0.75);
+     imv_canvas_fill_rectangle(imv->canvas, 0, wh - height - bottom_offset,
+         ww, height + bottom_offset);
+@@ -1458,7 +1458,7 @@ static void render_window(struct imv *imv)
+         imv_console_prompt(imv->console));
+     /* draw the cursor */
+     imv_canvas_color(imv->canvas, 1, 1, 1, 0.5);
+-    imv_canvas_printf(imv->canvas, x, wh - height - bottom_offset, "\u2588");
++    imv_canvas_printf(imv->canvas, x, wh - height - bottom_offset, "▏");
+     /* any any remaining text on top of the cursor */
+     imv_canvas_color(imv->canvas, 1, 1, 1, 1);
+     imv_canvas_printf(imv->canvas, x, wh - height - bottom_offset, "%s",
